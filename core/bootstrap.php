@@ -14,8 +14,26 @@ class bootstrap
 
     public static function run()
     {
-        $route = new \core\route();
-        echo $route->fetchFilename();
+        $route = new \core\libs\route();
+
+        $controller = $route->fetchController();
+        $method     = $route->fetchMethod();
+
+        $file = sprintf('%s/controller/%s', APP_PATH, $route->filename());
+
+        if (is_file($file)) {
+            include_once $file;
+
+            $ctlClass  = '\\app\controller\\';
+            $directory = $route->fetchDirectory();
+
+            if ( ! empty($directory)) {
+                $ctlClass .= $directory.'\\';
+            }
+
+            $ctlClass .= $controller;
+            (new $ctlClass())->$method();
+        }
     }
 
     public static function loadClass($class)
@@ -30,8 +48,20 @@ class bootstrap
 
         if (is_file($file)) {
             include_once $file;
-
             self::$isLoad[$class] = 1;
+        }
+    }
+
+    public function display($template, $data = [])
+    {
+        $file = sprintf('%s/view/%s.php', APP_PATH, $template);
+
+        if (is_file($file)) {
+            if ( ! empty($data)) {
+                extract($data);
+            }
+
+            include_once $file;
         }
     }
 }

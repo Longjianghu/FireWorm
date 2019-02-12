@@ -6,37 +6,39 @@
  * Time: 15:45
  */
 
-namespace core;
+namespace core\libs;
 
 class route
 {
-    public $directory  = ''; // 控制器目录
-    public $controller = 'home'; // 默认控制器
-    public $method     = 'index'; // 默认方法
+    private $_directory  = ''; // 控制器目录
+    private $_controller = 'home'; // 默认控制器
+    private $_method     = 'index'; // 默认方法
 
     public function __construct()
     {
         $this->_parseUri();
     }
 
-    public function fetchFilename()
+    public function filename()
     {
-        return sprintf('%s/%sController.php', $this->directory, ucfirst($this->controller));
+        $filename = sprintf('%s/%sController.php', $this->_directory, ucfirst($this->_controller));
+
+        return ltrim($filename,'/');
     }
 
     public function fetchController()
     {
-        return $this->controller;
+        return ucfirst(sprintf('%sController', $this->_controller));
     }
 
     public function fetchMethod()
     {
-        return $this->method;
+        return $this->_method;
     }
 
     public function fetchDirectory()
     {
-        return $this->directory;
+        return $this->_directory;
     }
 
     private function _parseUri()
@@ -94,16 +96,16 @@ class route
 
     private function _setController($controller)
     {
-        $this->controller = $controller;
+        $this->_controller = $controller;
     }
 
     private function _setMethod($method)
     {
-        $this->method = $method;
+        $this->_method = $method;
     }
 
     private function _setDirectory($directory)
     {
-        $this->directory = $directory;
+        $this->_directory = str_replace('/controller/', '', $directory);
     }
 }
