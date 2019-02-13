@@ -61,24 +61,29 @@ class Route
                 $uri = substr($uri, stripos($uri, 'index.php'));
             }
 
-            $uri    = ltrim($uri, '/');
-            $uriArr = explode('/', $uri);
+            $uri     = ltrim($uri, '/');
+            $segment = explode('/', $uri);
 
             $path = $this->_controllerDir;
 
-            foreach ($uriArr as $k => $v) {
+            foreach ($segment as $k => $v) {
                 $path .= sprintf('/%s', strtolower($v));
 
                 if ( ! is_dir(APP_PATH.'/'.$path)) {
                     break;
                 }
 
-                unset($uriArr[$k]);
+                unset($segment[$k]);
                 $this->_setDirectory(sprintf('/%s', trim($path, '/')));
             }
 
-            $this->_setController(array_shift($uriArr));
-            $this->_setMethod(array_shift($uriArr));
+            if ( ! empty($segment)) {
+                $this->_setController(array_shift($segment));
+            }
+
+            if ( ! empty($segment)) {
+                $this->_setMethod(array_shift($segment));
+            }
 
             if (empty($this->_controller)) {
                 $this->_setController(config::item('defaultController'));
@@ -88,16 +93,16 @@ class Route
                 $this->_setMethod(config::item('defaultMethod'));
             }
 
-            if ( ! empty($uriArr)) {
+            if ( ! empty($segment)) {
                 $i     = 0;
-                $count = count($uriArr);
+                $count = count($segment);
 
                 do {
-                    if ( ! isset($uriArr[$i + 1])) {
+                    if ( ! isset($segment[$i + 1])) {
                         break;
                     }
 
-                    $_GET[$uriArr[$i]] = $uriArr[$i + 1];
+                    $_GET[$segment[$i]] = $segment[$i + 1];
 
                     $i += 2;
                 } while ($i < $count);
