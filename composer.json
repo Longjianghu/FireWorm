@@ -1,0 +1,17 @@
+{
+  "name": "FireWorm",
+  "description": "PHP Framework",
+  "type": "Framework",
+  "require": {
+    "php": "^7.0",
+    "twig/twig": "^2.6"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "longjianghu",
+      "email": "215241062@qq.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}

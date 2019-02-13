@@ -17,6 +17,7 @@ ini_set('display_errors', ( ! empty(DEBUE)) ? 'On' : 'Off');
 
 include_once CORE_PATH.'/common/Function.php';
 include_once CORE_PATH.'/Bootstrap.php';
+include_once ROOT_PATH.'/vendor/autoload.php';
 
 spl_autoload_register('\core\Bootstrap::loadClass');
 

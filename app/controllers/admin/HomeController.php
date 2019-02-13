@@ -14,6 +14,6 @@ class HomeController
 {
     public function index()
     {
-        view::display('home/Index', ['content' => 'Admin']);
+        view::render('home/Index', ['content' => 'Admin']);
     }
 }

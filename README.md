@@ -3,11 +3,11 @@
 
 # 运行环境
 
-PHP >= 7.0
+PHP >= 5.3
 
 # 注意事项
 
-1、文件名全部使用大驼峰方式命名,example：HomeController.
+1、文件名全部使用大驼峰方式命名,example:HomeController
 
 2、所有目录以全部小写
 

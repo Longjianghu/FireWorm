@@ -10,27 +10,25 @@ namespace core\libs;
 
 class View
 {
-    public static function display($template, $data = [], $cache = false)
+    public static function render(string $file, array $data = [])
     {
-        $filename = sprintf('%s/%s/%s.php', APP_PATH, config::item('viewDir'), $template);
+        $cacheDir = RUN_PATH.'/cache';
 
-        if (is_file($filename)) {
-            if ( ! empty($cache)) {
-                ob_start();
-            }
+        if ( ! is_dir($cacheDir)) {
+            @mkdir($cacheDir, 0777, true);
+        }
 
-            if ( ! empty($data)) {
-                extract($data);
-            }
+        if (stripos($file, 'twig') === false) {
+            $file = sprintf('%s.twig', $file);
+        }
 
-            include_once $filename;
+        $viewPath = APP_PATH.'/'.Config::item('viewDir');
+        $path     = $viewPath.'/'.$file;
 
-            if ( ! empty($cache)) {
-                $str = ob_get_contents();
-                ob_end_clean();
+        if (is_file($path)) {
+            $loader = new \Twig_Loader_Filesystem($viewPath);
 
-                return $str;
-            }
+            return (new \Twig_Environment($loader, ['cache' => $cacheDir]))->render($file, $data);
         }
     }
 }

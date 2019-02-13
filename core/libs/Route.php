@@ -80,11 +80,11 @@ class Route
             $this->_setController(array_shift($uriArr));
             $this->_setMethod(array_shift($uriArr));
 
-            if (empty($this->controller)) {
+            if (empty($this->_controller)) {
                 $this->_setController(config::item('defaultController'));
             }
 
-            if (empty($this->method)) {
+            if (empty($this->_method)) {
                 $this->_setMethod(config::item('defaultMethod'));
             }
 
@@ -105,17 +105,17 @@ class Route
         }
     }
 
-    private function _setController($controller)
+    private function _setController(string $controller)
     {
         $this->_controller = $controller;
     }
 
-    private function _setMethod($method)
+    private function _setMethod(string $method)
     {
         $this->_method = $method;
     }
 
-    private function _setDirectory($directory)
+    private function _setDirectory(string $directory)
     {
         $this->_directory = str_replace('/'.$this->_controllerDir.'/', '', $directory);
     }

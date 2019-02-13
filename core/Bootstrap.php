@@ -20,10 +20,10 @@ class Bootstrap
         $method     = $route->fetchMethod();
         $directory  = $route->fetchDirectory();
 
-        $file = sprintf('%s/%s', APP_PATH, $route->filename());
+        $filename = sprintf('%s/%s', APP_PATH, $route->filename());
 
-        if (is_file($file)) {
-            include_once $file;
+        if (is_file($filename)) {
+            include_once $filename;
 
             $ctlClass = '\\app\controller\\';
 
@@ -36,7 +36,7 @@ class Bootstrap
         }
     }
 
-    public static function loadClass($class)
+    public static function loadClass(string $class)
     {
         $class = str_replace('\\', '/', $class);
 
@@ -44,10 +44,10 @@ class Bootstrap
             return;
         }
 
-        $file = ROOT_PATH.'/'.$class.'.php';
+        $filename = ROOT_PATH.'/'.$class.'.php';
 
-        if (is_file($file)) {
-            include_once $file;
+        if (is_file($filename)) {
+            include_once $filename;
             self::$isLoad[$class] = 1;
         }
     }

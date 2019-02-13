@@ -21,7 +21,7 @@ if ( ! function_exists('p')) {
 }
 
 if ( ! function_exists('showError')) {
-    function showError($message, $status = 404)
+    function showError(string $message, int $status = 404)
     {
         echo $message;
         exit();

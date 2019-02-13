@@ -12,7 +12,7 @@ class Config
 {
     public static $config = [];
 
-    public static function item($item = null, $filename = 'settings')
+    public static function item($item = null, string $filename = 'settings')
     {
         if (isset(self::$config[$filename])) {
             return ( ! empty($item) && isset(self::$config[$filename][$item])) ? self::$config[$filename][$item] : null;
