@@ -28,7 +28,7 @@ class View
         if (is_file($path)) {
             $loader = new \Twig_Loader_Filesystem($viewPath);
 
-            return (new \Twig_Environment($loader, ['cache' => $cacheDir]))->render($file, $data);
+            return (new \Twig_Environment($loader, ['cache' => $cacheDir, 'debug' => DEBUE]))->render($file, $data);
         }
     }
 }

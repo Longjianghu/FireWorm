@@ -14,6 +14,8 @@ class Config
 
     public static function item($item = null, string $filename = 'settings')
     {
+        $filename = ucfirst($filename);
+
         if (isset(self::$config[$filename])) {
             return ( ! empty($item) && isset(self::$config[$filename][$item])) ? self::$config[$filename][$item] : null;
         }

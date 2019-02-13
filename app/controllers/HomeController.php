@@ -14,6 +14,6 @@ class HomeController
 {
     public function index()
     {
-        echo view::render('home/Index', ['content' => 'Welcome']);
+        echo view::render('home/index', ['content' => 'Welcome']);
     }
 }
