@@ -8,7 +8,7 @@
 
 namespace core;
 
-class bootstrap
+class Bootstrap
 {
     public static $isLoad = [];
 
@@ -18,17 +18,17 @@ class bootstrap
 
         $controller = $route->fetchController();
         $method     = $route->fetchMethod();
+        $directory  = $route->fetchDirectory();
 
-        $file = sprintf('%s/controller/%s', APP_PATH, $route->filename());
+        $file = sprintf('%s/%s', APP_PATH, $route->filename());
 
         if (is_file($file)) {
             include_once $file;
 
-            $ctlClass  = '\\app\controller\\';
-            $directory = $route->fetchDirectory();
+            $ctlClass = '\\app\controller\\';
 
             if ( ! empty($directory)) {
-                $ctlClass .= $directory.'\\';
+                $ctlClass .= str_replace('/', '\\', $directory).'\\';
             }
 
             $ctlClass .= $controller;
@@ -49,19 +49,6 @@ class bootstrap
         if (is_file($file)) {
             include_once $file;
             self::$isLoad[$class] = 1;
-        }
-    }
-
-    public function display($template, $data = [])
-    {
-        $file = sprintf('%s/view/%s.php', APP_PATH, $template);
-
-        if (is_file($file)) {
-            if ( ! empty($data)) {
-                extract($data);
-            }
-
-            include_once $file;
         }
     }
 }

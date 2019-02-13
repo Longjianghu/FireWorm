@@ -6,12 +6,14 @@
  * Time: 16:20
  */
 
-namespace app\controller\admin;
+namespace app\controller;
+
+use core\libs\view;
 
 class HomeController
 {
     public function index()
     {
-        echo 'Admin';
+        view::display('home/Index', ['content' => 'Welcome']);
     }
 }

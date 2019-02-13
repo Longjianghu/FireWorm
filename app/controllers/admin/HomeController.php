@@ -6,12 +6,14 @@
  * Time: 16:20
  */
 
-namespace app\controller;
+namespace app\controller\admin;
 
-class HomeController extends \core\bootstrap
+use core\libs\view;
+
+class HomeController
 {
     public function index()
     {
-        $this->display('home/index');
+        view::display('home/Index', ['content' => 'Admin']);
     }
 }

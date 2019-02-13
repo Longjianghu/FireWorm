@@ -15,9 +15,9 @@ define('DEBUE', true);
 ini_set('date.timezone', 'Asia/Shanghai');
 ini_set('display_errors', ( ! empty(DEBUE)) ? 'On' : 'Off');
 
-include_once CORE_PATH.'/common/function.php';
-include_once CORE_PATH.'/bootstrap.php';
+include_once CORE_PATH.'/common/Function.php';
+include_once CORE_PATH.'/Bootstrap.php';
 
-spl_autoload_register('\core\bootstrap::loadClass');
+spl_autoload_register('\core\Bootstrap::loadClass');
 
-\core\bootstrap::run();
+\core\Bootstrap::run();

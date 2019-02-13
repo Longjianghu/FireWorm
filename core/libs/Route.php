@@ -8,22 +8,33 @@
 
 namespace core\libs;
 
-class route
+class Route
 {
-    private $_directory  = ''; // 控制器目录
-    private $_controller = 'home'; // 默认控制器
-    private $_method     = 'index'; // 默认方法
+    private $_directory     = ''; // 控制器目录
+    private $_controller    = ''; // 默认控制器
+    private $_method        = ''; // 默认方法
+    private $_controllerDir = ''; // 控制器目录
 
     public function __construct()
     {
+        $this->_controller    = config::item('defaultController');
+        $this->_method        = config::item('defaultMethod');
+        $this->_controllerDir = config::item('controllerDir');
+
         $this->_parseUri();
     }
 
     public function filename()
     {
-        $filename = sprintf('%s/%sController.php', $this->_directory, ucfirst($this->_controller));
+        $filename = $this->_controllerDir;
 
-        return ltrim($filename,'/');
+        if ( ! empty($this->_directory)) {
+            $filename .= '/'.$this->_directory;
+        }
+
+        $filename .= sprintf('/%s.php', $this->fetchController());
+
+        return ltrim($filename, '/');
     }
 
     public function fetchController()
@@ -53,28 +64,28 @@ class route
             $uri    = ltrim($uri, '/');
             $uriArr = explode('/', $uri);
 
-            $path = '';
+            $path = $this->_controllerDir;
 
             foreach ($uriArr as $k => $v) {
-                $path .= sprintf('/controller/%s', $v);
+                $path .= sprintf('/%s', strtolower($v));
 
-                if ( ! is_dir(APP_PATH.$path)) {
+                if ( ! is_dir(APP_PATH.'/'.$path)) {
                     break;
                 }
 
                 unset($uriArr[$k]);
-                $this->_setDirectory($path);
+                $this->_setDirectory(sprintf('/%s', trim($path, '/')));
             }
 
             $this->_setController(array_shift($uriArr));
             $this->_setMethod(array_shift($uriArr));
 
             if (empty($this->controller)) {
-                $this->_setController('home');
+                $this->_setController(config::item('defaultController'));
             }
 
             if (empty($this->method)) {
-                $this->_setMethod('index');
+                $this->_setMethod(config::item('defaultMethod'));
             }
 
             if ( ! empty($uriArr)) {
@@ -106,6 +117,6 @@ class route
 
     private function _setDirectory($directory)
     {
-        $this->_directory = str_replace('/controller/', '', $directory);
+        $this->_directory = str_replace('/'.$this->_controllerDir.'/', '', $directory);
     }
 }
