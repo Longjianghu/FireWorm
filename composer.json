@@ -13,5 +13,10 @@
       "email": "215241062@qq.com"
     }
   ],
-  "minimum-stability": "dev"
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
 }
