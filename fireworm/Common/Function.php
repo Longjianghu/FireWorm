@@ -10,21 +10,36 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 入口文件
+// 函数库
 //----------------------------------
 
-declare(strict_types=1);
+/**
+ * 调试函数
+ *
+ * @access public
+ * @param  mixed $data 打印数据
+ * @return void
+ */
+if ( ! function_exists('dump')) {
+    function dump($data)
+    {
+        echo '<pre>'.print_r($data).'</pre>';
+    }
+}
 
-define('VERSION', '1.0.0');
-define('ROOT_PATH', dirname(__DIR__));
-define('CORE_PATH', ROOT_PATH.'/fireworm');
-define('APP_PATH', ROOT_PATH.'/application');
-define('RUN_PATH', ROOT_PATH.'/runtime');
-define('APP_ENV', 'dev');
+/**
+ * 获取环境变量
+ *
+ * @access public
+ * @param  string $item 选项
+ * @param  mixed $default 默认值
+ * @return string
+ */
+if ( ! function_exists('env')) {
+    function env($item, $default = null)
+    {
+        $env = getenv($item);
 
-ini_set('date.timezone', 'Asia/Shanghai');
-ini_set('display_errors', (APP_ENV == 'dev') ? 'On' : 'Off');
-
-require_once ROOT_PATH.'/vendor/autoload.php';
-
-\FireWorm\Bootstrap::run();
+        return ( ! empty($env)) ? $env : $default;
+    }
+}

@@ -10,21 +10,14 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 入口文件
+// 会员模型
 //----------------------------------
 
-declare(strict_types=1);
+namespace App\Models;
 
-define('VERSION', '1.0.0');
-define('ROOT_PATH', dirname(__DIR__));
-define('CORE_PATH', ROOT_PATH.'/fireworm');
-define('APP_PATH', ROOT_PATH.'/application');
-define('RUN_PATH', ROOT_PATH.'/runtime');
-define('APP_ENV', 'dev');
+use FireWorm\Core\Model;
 
-ini_set('date.timezone', 'Asia/Shanghai');
-ini_set('display_errors', (APP_ENV == 'dev') ? 'On' : 'Off');
+class UserModel extends Model
+{
 
-require_once ROOT_PATH.'/vendor/autoload.php';
-
-\FireWorm\Bootstrap::run();
+}

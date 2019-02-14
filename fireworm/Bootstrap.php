@@ -10,21 +10,25 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 入口文件
+// 引导文件
 //----------------------------------
 
 declare(strict_types=1);
 
-define('VERSION', '1.0.0');
-define('ROOT_PATH', dirname(__DIR__));
-define('CORE_PATH', ROOT_PATH.'/fireworm');
-define('APP_PATH', ROOT_PATH.'/application');
-define('RUN_PATH', ROOT_PATH.'/runtime');
-define('APP_ENV', 'dev');
+namespace FireWorm;
 
-ini_set('date.timezone', 'Asia/Shanghai');
-ini_set('display_errors', (APP_ENV == 'dev') ? 'On' : 'Off');
+use App\Controllers\HomeController;
 
-require_once ROOT_PATH.'/vendor/autoload.php';
-
-\FireWorm\Bootstrap::run();
+class Bootstrap
+{
+    /**
+     * 启动方法
+     *
+     * @access public
+     * @return void
+     */
+    public static function run(): void
+    {
+        echo (new HomeController())->index();
+    }
+}

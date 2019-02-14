@@ -2,10 +2,10 @@
   "name": "FireWorm",
   "description": "PHP Framework",
   "type": "Framework",
-  "require": {
-    "php": "^7.0",
-    "twig/twig": "^2.6"
-  },
+  "keywords": [
+    "FireWorm",
+    "Framework"
+  ],
   "license": "MIT",
   "authors": [
     {
@@ -13,6 +13,21 @@
       "email": "215241062@qq.com"
     }
   ],
+  "autoload": {
+    "files": [
+      "fireworm/Common/Function.php"
+    ],
+    "psr-4": {
+      "FireWorm\\": "fireworm/",
+      "App\\": "application/"
+    }
+  },
+  "require": {
+    "php": "^7.0",
+    "twig/twig": "^2.6",
+    "monolog/monolog": "^1.24",
+    "guzzlehttp/guzzle": "^6.3"
+  },
   "repositories": {
     "packagist": {
       "type": "composer",
