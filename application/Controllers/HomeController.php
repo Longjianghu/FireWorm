@@ -25,7 +25,7 @@ class HomeController extends Controller
      * @access public
      * @return void
      */
-    public function index(): void
+    public function index()
     {
         $data = [
             'title'   => 'FireWorm',
