@@ -15,19 +15,19 @@
 
 return [
     'master' => [
-        'server'   => '',
-        'username' => '',
-        'password' => '',
-        'dbname'   => '',
-        'prefix'   => '',
-        'port'     => ''
+        'server'   => env('master.server', '127.0.0.1'),
+        'username' => env('master.username', 'root'),
+        'password' => env('master.password', ''),
+        'database' => env('master.database', 'test'),
+        'prefix'   => env('master.prefix', ''),
+        'port'     => env('master.port', '3303')
     ],
     'slave'  => [
-        'server'   => '',
-        'username' => '',
-        'password' => '',
-        'dbname'   => '',
-        'prefix'   => '',
-        'port'     => ''
+        'server'   => env('master.server', '127.0.0.1'),
+        'username' => env('master.username', 'root'),
+        'password' => env('master.password', ''),
+        'database' => env('master.database', 'test'),
+        'prefix'   => env('master.prefix', ''),
+        'port'     => env('master.port', '3303')
     ],
 ];

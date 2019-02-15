@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace FireWorm;
 
+use FireWorm\Core\DotEnv;
 use FireWorm\Core\Route;
 
 class Bootstrap
@@ -27,9 +28,13 @@ class Bootstrap
      * @access public
      * @return void
      */
-    public static function run(): void
+    public static function run()
     {
         try {
+            // 加载环境变量
+            (new DotEnv(ROOT_PATH))->load();
+
+            // 路由
             $route = new Route();
 
             $controller = $route->fetchController();
