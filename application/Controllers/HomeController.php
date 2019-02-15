@@ -15,7 +15,6 @@
 
 namespace App\Controllers;
 
-use FireWorm\Core\Config;
 use FireWorm\Core\Controller;
 
 class HomeController extends Controller
@@ -28,6 +27,11 @@ class HomeController extends Controller
      */
     public function index(): void
     {
-        echo 'Welcome';
+        $data = [
+            'title'   => 'FireWorm',
+            'content' => '一款简单的PHP开发框架!',
+        ];
+
+        return $this->render('home/index', $data);
     }
 }

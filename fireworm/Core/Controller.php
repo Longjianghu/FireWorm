@@ -29,13 +29,38 @@ class Controller
     }
 
     /**
-     * 魔术方法.
+     * 视图渲染
      *
      * @access public
-     * @return void
+     * @param string $file  模板文件
+     * @param array  $data  渲染数据
+     * @param bool   $cache 返回数据
+     * @return string|void
      */
-    protected function __toString()
+    public function render(string $file, array $data = [], $cache = false)
     {
+        $cachePath = RUN_PATH.'/twig';
 
+        if ( ! is_dir($cachePath)) {
+            mkdir($cachePath, 0777, true);
+        }
+
+        if (stripos($file, 'twig') === false) {
+            $file = sprintf('%s.twig', $file);
+        }
+
+        $viewPath = APP_PATH.'/'.Config::item('viewPath');
+        $path     = $viewPath.'/'.$file;
+
+        if (is_file($path)) {
+            $loader = new \Twig_Loader_Filesystem($viewPath);
+
+            $twig = (new \Twig_Environment($loader, [
+                'cache' => $cachePath,
+                'debug' => (APP_ENV == 'dev') ? true : false
+            ]));
+
+            return ( ! empty($cache)) ? $twig->render($file, $data) : $twig->display($file, $data);
+        }
     }
 }
