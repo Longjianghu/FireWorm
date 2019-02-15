@@ -1,9 +1,9 @@
 {
-  "name": "FireWorm",
+  "name": "Fireworm",
   "description": "PHP Framework",
   "type": "Framework",
   "keywords": [
-    "FireWorm",
+    "Fireworm",
     "Framework"
   ],
   "license": "MIT",
@@ -19,7 +19,7 @@
       "fireworm/Common/Function.php"
     ],
     "psr-4": {
-      "FireWorm\\": "fireworm/",
+      "Fireworm\\": "fireworm/",
       "App\\": "application/"
     }
   },

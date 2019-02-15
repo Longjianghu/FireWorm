@@ -1,4 +1,4 @@
-# FireWorm
+# Fireworm
  一款简单的PHP开发框架
 
 # 运行环境

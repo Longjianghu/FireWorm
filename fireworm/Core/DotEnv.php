@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | FireWorm [ WE CAN DO IT JUST THINK IT ]
+// | Fireworm [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2019 http://www.sohocn.net All rights reserved.
 // +----------------------------------------------------------------------
@@ -13,11 +13,11 @@
 // 自定义环境变量
 //----------------------------------
 
-namespace FireWorm\Core;
+namespace Fireworm\Core;
 
 class DotEnv
 {
-    protected $path; // 配置文件路径
+    public $path; // 配置文件路径
 
     /**
      * 初始化.

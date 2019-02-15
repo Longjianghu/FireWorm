@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | FireWorm [ WE CAN DO IT JUST THINK IT ]
+// | Fireworm [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2019 http://www.sohocn.net All rights reserved.
 // +----------------------------------------------------------------------
@@ -15,10 +15,11 @@
 
 declare(strict_types=1);
 
-namespace FireWorm;
+namespace Fireworm;
 
-use FireWorm\Core\DotEnv;
-use FireWorm\Core\Route;
+use Fireworm\Core\DotEnv;
+use Fireworm\Core\Logs;
+use Fireworm\Core\Route;
 
 class Bootstrap
 {
@@ -44,20 +45,16 @@ class Bootstrap
             $class = str_replace('\\\\', '\\', $class);
 
             if ( ! class_exists($class)) {
-                throw new \Exception($controller.'未定义！');
+                throw new \Exception($controller.'类未定义！');
             }
 
             if ( ! method_exists($class, $method)) {
-                throw new \Exception($method.'未定义！');
+                throw new \Exception($method.'方法未定义！');
             }
 
             (new $class())->$method();
         } catch (\Throwable $e) {
-            if ($e instanceof \Error) {
-                echo $e->getMessage();
-            } else {
-
-            }
+            (new Logs())::addUserLog($e->getMessage(), [], false);
 
             echo $e->getMessage();
         }

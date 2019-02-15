@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | FireWorm [ WE CAN DO IT JUST THINK IT ]
+// | Fireworm [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2019 http://www.sohocn.net All rights reserved.
 // +----------------------------------------------------------------------
@@ -15,7 +15,7 @@
 
 namespace App\Models;
 
-use FireWorm\Core\Model;
+use Fireworm\Core\Model;
 
 class UserModel extends Model
 {

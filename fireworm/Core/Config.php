@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | FireWorm [ WE CAN DO IT JUST THINK IT ]
+// | Fireworm [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2019 http://www.sohocn.net All rights reserved.
 // +----------------------------------------------------------------------
@@ -13,7 +13,7 @@
 // 文件配置类
 //----------------------------------
 
-namespace FireWorm\Core;
+namespace Fireworm\Core;
 
 class Config
 {

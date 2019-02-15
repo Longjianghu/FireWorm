@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | FireWorm [ WE CAN DO IT JUST THINK IT ]
+// | Fireworm [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2019 http://www.sohocn.net All rights reserved.
 // +----------------------------------------------------------------------
@@ -15,7 +15,7 @@
 
 namespace App\Controllers;
 
-use FireWorm\Core\Controller;
+use Fireworm\Core\Controller;
 
 class HomeController extends Controller
 {
@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            'title'   => 'FireWorm',
+            'title'   => 'Fireworm',
             'content' => '一款简单的PHP开发框架!',
         ];
 
