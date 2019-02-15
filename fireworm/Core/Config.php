@@ -23,7 +23,7 @@ class Config
      * 获取配置选项
      *
      * @access public
-     * @param  mixed  $item     配置选项
+     * @param  string $item     配置选项
      * @param  string $filename 配置文件名
      * @return mixed
      */

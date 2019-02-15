@@ -17,13 +17,25 @@
  * 调试函数
  *
  * @access public
- * @param  mixed $data 打印数据
+ * @param  mixed $data   打印数据
+ * @param  bool  $format 格式化打印
+ * @param  bool  $break  是否中断
  * @return void
  */
-if ( ! function_exists('dump')) {
-    function dump($data)
+if ( ! function_exists('p')) {
+    function p($data, $format = false, $break = true)
     {
-        echo '<pre>'.print_r($data).'</pre>';
+        if ( ! empty($format)) {
+            echo '<pre>';
+            var_dump($data);
+            echo '</pre>';
+        } else {
+            var_dump($data);
+        }
+
+        if ( ! empty($break)) {
+            exit();
+        }
     }
 }
 
@@ -31,8 +43,8 @@ if ( ! function_exists('dump')) {
  * 获取环境变量
  *
  * @access public
- * @param  string $item 选项
- * @param  mixed $default 默认值
+ * @param  string $item    选项
+ * @param  mixed  $default 默认值
  * @return string
  */
 if ( ! function_exists('env')) {

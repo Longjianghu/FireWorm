@@ -15,6 +15,7 @@
 
 namespace App\Controllers;
 
+use FireWorm\Core\Config;
 use FireWorm\Core\Controller;
 
 class HomeController extends Controller

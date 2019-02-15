@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 namespace FireWorm;
 
-use App\Controllers\HomeController;
+use FireWorm\Core\Route;
 
 class Bootstrap
 {
@@ -29,6 +29,32 @@ class Bootstrap
      */
     public static function run(): void
     {
-        echo (new HomeController())->index();
+        try {
+            $route = new Route();
+
+            $controller = $route->fetchController();
+            $method     = $route->fetchMethod();
+
+            $class = sprintf('%s\%s', $route->fetchNameSpace(), $controller);
+            $class = str_replace('\\\\', '\\', $class);
+
+            if ( ! class_exists($class)) {
+                throw new \Exception($controller.'未定义！');
+            }
+
+            if ( ! method_exists($class, $method)) {
+                throw new \Exception($method.'未定义！');
+            }
+
+            (new $class())->$method();
+        } catch (\Throwable $e) {
+            if ($e instanceof \Error) {
+                echo $e->getMessage();
+            } else {
+
+            }
+
+            echo $e->getMessage();
+        }
     }
 }

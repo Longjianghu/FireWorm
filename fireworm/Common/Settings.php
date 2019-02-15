@@ -14,13 +14,9 @@
 //----------------------------------
 
 return [
-    'default' => [ // 默认配置
-                   'controller' => 'home', // 默认控制器
-                   'method'     => 'index' // 默认方法
-    ],
-    'path'    => [ // 路径配置
-                   'controller' => 'Controllers', // 控制器目录
-                   'model'      => 'Models', // 视图目录
-                   'view'       => 'Views' // 视图目录
-    ],
+    'defaultController' => 'home',  // 默认控制器
+    'defaultMethod'     => 'index', // 默认方法
+    'controllerPath'    => 'Controllers', // 控制器目录
+    'modelPath'         => 'Models', // 模型目录
+    'viewPath'          => 'Views', // 视图目录
 ];
