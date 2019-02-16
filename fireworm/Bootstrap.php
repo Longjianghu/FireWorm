@@ -35,7 +35,7 @@ class Bootstrap
             // 加载环境变量
             (new DotEnv(ROOT_PATH))->load();
 
-            // 路由
+            // 解析路由
             $route = new Route();
 
             $controller = $route->fetchController();

@@ -20,7 +20,7 @@ define('ROOT_PATH', dirname(__DIR__));
 define('CORE_PATH', ROOT_PATH.'/fireworm');
 define('APP_PATH', ROOT_PATH.'/application');
 define('RUN_PATH', ROOT_PATH.'/runtime');
-define('APP_ENV', env('env','dev'));
+define('APP_ENV', 'dev');
 
 ini_set('date.timezone', 'Asia/Shanghai');
 ini_set('display_errors', (APP_ENV == 'dev') ? 'On' : 'Off');
