@@ -29,16 +29,16 @@ class View
             $file = sprintf('%s.twig', $file);
         }
 
-        $viewPath = APP_PATH.'/'.Config::item('viewDir');
-        $path     = $viewPath.'/'.$file;
+        $viewPath = APP_PATH.'/'.Config::item('viewPath');
+        $filename = $viewPath.'/'.$file;
 
-        if (is_file($path)) {
+        if (is_file($filename)) {
             $loader = new \Twig_Loader_Filesystem($viewPath);
 
             return (new \Twig_Environment($loader, [
                 'cache' => $cacheDir,
                 'debug' => (APP_ENV == 'dev') ? true : false
-            ]))->render($file, $data);
+            ]))->render($filename, $data);
         }
     }
 }
