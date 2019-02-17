@@ -17,18 +17,7 @@ namespace Fireworm\Core;
 
 class View
 {
-    /**
-     * 初始化.
-     *
-     * @access public
-     * @return void
-     */
-    public function __construct()
-    {
-
-    }
-
-    public static function render(string $file, array $data = [])
+    public function render(string $file, array $data = [])
     {
         $cacheDir = RUN_PATH.'/cache';
 
@@ -46,7 +35,10 @@ class View
         if (is_file($path)) {
             $loader = new \Twig_Loader_Filesystem($viewPath);
 
-            return (new \Twig_Environment($loader, ['cache' => $cacheDir, 'debug' => DEBUE]))->render($file, $data);
+            return (new \Twig_Environment($loader, [
+                'cache' => $cacheDir,
+                'debug' => (APP_ENV == 'dev') ? true : false
+            ]))->render($file, $data);
         }
     }
 }
