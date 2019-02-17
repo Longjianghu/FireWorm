@@ -94,11 +94,19 @@ class Route
     {
         $uri = $_SERVER['REQUEST_URI'];
 
-        if ($uri != '/') {
-            if (stripos($uri, 'index.php') !== false) {
-                $uri = substr($uri, stripos($uri, 'index.php') + 9);
-            }
+        $point = stripos($uri, 'index.php');
 
+        if ($point !== false) {
+            $uri = substr($uri, $point + 9);
+        }
+
+        $point = stripos($uri, '?');
+
+        if ($point !== false) {
+            $uri = substr($uri, 0, $point);
+        }
+
+        if ($uri != '/') {
             $uri     = ltrim($uri, '/');
             $segment = explode('/', $uri);
 

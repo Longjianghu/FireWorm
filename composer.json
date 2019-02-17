@@ -27,7 +27,8 @@
     "php": "^7.0",
     "twig/twig": "^2.6",
     "monolog/monolog": "^1.24",
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "voku/anti-xss": "^4.1"
   },
   "repositories": {
     "packagist": {
