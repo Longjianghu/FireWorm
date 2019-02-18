@@ -28,7 +28,8 @@
     "twig/twig": "^2.6",
     "monolog/monolog": "^1.24",
     "guzzlehttp/guzzle": "^6.3",
-    "voku/anti-xss": "^4.1"
+    "voku/anti-xss": "^4.1",
+    "catfan/medoo": "^1.6"
   },
   "repositories": {
     "packagist": {
