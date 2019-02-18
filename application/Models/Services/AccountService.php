@@ -15,12 +15,12 @@
 
 namespace App\Models\Services;
 
-use App\Models\Dao\AccountModel;
+use App\Models\Dao\AccountDao;
 
 class AccountService
 {
     /**
-     * @var \App\Models\Dao\AccountModel $_accountModel
+     * @var \App\Models\Dao\AccountDao $_accountModel
      */
     private $_accountModel;
 
@@ -32,7 +32,7 @@ class AccountService
      */
     public function __construct()
     {
-        $this->_accountModel = new AccountModel();
+        $this->_accountModel = new AccountDao();
     }
 
     /**
