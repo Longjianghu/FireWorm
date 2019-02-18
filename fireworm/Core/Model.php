@@ -25,18 +25,19 @@ class Model
     public static $isLoad;
 
     /**
-     * 初始化.
+     * 初始化
      *
      * @access public
-     * @param  string $pool 连接池
-     * @return void
+     * @link   https://medoo.in/doc
+     * @param  string $group 配置分组
+     * @throws \Exception
      */
-    public function __construct($pool = 'master')
+    public function __construct($group = 'master')
     {
-        if (isset(self::$isLoad[$pool])) {
-            $this->_db = self::$isLoad[$pool];
+        if (isset(self::$isLoad[$group])) {
+            $this->_db = self::$isLoad[$group];
         } else {
-            $config = Config::item($pool, 'database');
+            $config = Config::item($group, 'database');
 
             if (empty($config)) {
                 throw new \Exception('数据库配置不存在！');
@@ -56,7 +57,7 @@ class Model
 
             $this->_db = new Medoo($this->_config);
 
-            self::$isLoad[$pool] = $this->_db;
+            self::$isLoad[$group] = $this->_db;
         }
     }
 

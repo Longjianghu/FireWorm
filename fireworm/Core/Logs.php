@@ -31,6 +31,10 @@ class Logs
      */
     public static function addUserLog(string $message, array $content = [], bool $debug = true)
     {
+        if (Config::item('writeLog') !== false) {
+            return;
+        }
+
         $logPath = RUN_PATH.'/logs/'.date('ymd');
 
         if ( ! is_dir($logPath)) {
@@ -41,6 +45,6 @@ class Logs
         $level    = ( ! empty($debug)) ? LOGGER::DEBUG : Logger::ERROR;
 
         $Logger = (new Logger('log'))->pushHandler(new StreamHandler($filename, $level));
-        ( ! empty($debug))? $Logger->addDebug($message, $content):$Logger->addError($message, $content);
+        ( ! empty($debug)) ? $Logger->addDebug($message, $content) : $Logger->addError($message, $content);
     }
 }
