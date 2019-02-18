@@ -45,6 +45,8 @@ class Config
             $config = include_once $path;
 
             self::$config[$filename] = $config;
+        } else {
+            throw new \Exception('配置文件'.$filename.'.php不存在！');
         }
 
         return ( ! empty($item) && isset(self::$config[$filename][$item])) ? self::$config[$filename][$item] : null;

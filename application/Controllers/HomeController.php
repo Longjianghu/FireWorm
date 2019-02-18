@@ -16,6 +16,7 @@
 namespace App\Controllers;
 
 use Fireworm\Core\Controller;
+use Fireworm\Core\View;
 
 class HomeController extends Controller
 {
@@ -32,6 +33,6 @@ class HomeController extends Controller
             'content' => '一款简单的PHP开发框架!',
         ];
 
-        return $this->render('home/index', $data);
+        return View::render('home/index', $data);
     }
 }

@@ -17,28 +17,41 @@ namespace Fireworm\Core;
 
 class View
 {
-    public function render(string $file, array $data = [])
+    /**
+     * 视图渲染
+     *
+     * @access public
+     * @param string $filename 模板文件
+     * @param array  $data     渲染数据
+     * @param bool   $cache    返回数据
+     * @return string|void
+     */
+    public static function render(string $filename, array $data = [], $cache = false)
     {
-        $cacheDir = RUN_PATH.'/cache';
+        $cachePath = RUN_PATH.'/twig';
 
-        if ( ! is_dir($cacheDir)) {
-            @mkdir($cacheDir, 0777, true);
+        if ( ! is_dir($cachePath)) {
+            @mkdir($cachePath, 0777, true);
         }
 
-        if (stripos($file, 'twig') === false) {
-            $file = sprintf('%s.twig', $file);
+        if (stripos($filename, 'twig') === false) {
+            $filename = sprintf('%s.twig', $filename);
         }
 
         $viewPath = APP_PATH.'/'.Config::item('viewPath');
-        $filename = $viewPath.'/'.$file;
+        $path     = $viewPath.'/'.$filename;
 
-        if (is_file($filename)) {
+        if (is_file($path)) {
             $loader = new \Twig_Loader_Filesystem($viewPath);
 
-            return (new \Twig_Environment($loader, [
-                'cache' => $cacheDir,
+            $twig = (new \Twig_Environment($loader, [
+                'cache' => $cachePath,
                 'debug' => (APP_ENV == 'dev') ? true : false
-            ]))->render($filename, $data);
+            ]));
+
+            return ( ! empty($cache)) ? $twig->render($filename, $data) : $twig->display($filename, $data);
+        } else {
+            throw new \Exception('视图文件'.$filename.'不存在！');
         }
     }
 }
