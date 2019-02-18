@@ -55,3 +55,16 @@ if ( ! function_exists('env')) {
         return ( ! empty($env)) ? $env : $default;
     }
 }
+
+/**
+ * 命令行
+ *
+ * @access public
+ * @return string
+ */
+if ( ! function_exists('isCli')) {
+    function isCli()
+    {
+        return PHP_SAPI === 'cli';
+    }
+}
