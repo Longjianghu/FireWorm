@@ -89,10 +89,6 @@ class Model
     /**
      * 查询数据
      *
-     * 查询字段支持string/array,字段排序和LIMIT格式示例：
-     *
-     * @example $where = ['ORDER' => ['id' => 'desc','LIMIT' => [0,2] / 10 ]
-     *
      * @access  public
      * @link    https://medoo.in/api/select
      * @param  string $table   数据表
@@ -100,7 +96,7 @@ class Model
      * @param  array  $where   查询条件
      * @return mixed
      */
-    public function fetchRow(string $table, $columns = '*', array $where = [])
+    public function fetchRow(string $table, string $columns = '*', array $where = [])
     {
         $where['LIMIT'] = 1;
 
@@ -112,10 +108,6 @@ class Model
     /**
      * 查询数据
      *
-     * 查询字段支持string/array,字段排序和LIMIT格式示例：
-     *
-     * @example $where = ['ORDER' => ['id' => 'desc','LIMIT' => [0,2] / 10 ]
-     *
      * @access  public
      * @link    https://medoo.in/api/select
      * @param  string $table   数据表
@@ -123,7 +115,7 @@ class Model
      * @param  array  $where   查询条件
      * @return mixed
      */
-    public function fetchAll(string $table, $columns = '*', array $where = [])
+    public function fetchAll(string $table, string $columns = '*', array $where = [])
     {
         return $this->_db->select($table, $columns, $where);
     }
