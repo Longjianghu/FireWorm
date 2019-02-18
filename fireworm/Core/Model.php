@@ -89,8 +89,8 @@ class Model
     /**
      * 查询数据
      *
-     * @access  public
-     * @link    https://medoo.in/api/select
+     * @access public
+     * @link   https://medoo.in/api/select
      * @param  string $table   数据表
      * @param  mixed  $columns 查询字段
      * @param  array  $where   查询条件
@@ -108,8 +108,8 @@ class Model
     /**
      * 查询数据
      *
-     * @access  public
-     * @link    https://medoo.in/api/select
+     * @access public
+     * @link   https://medoo.in/api/select
      * @param  string $table   数据表
      * @param  mixed  $columns 查询字段
      * @param  array  $where   查询条件
