@@ -28,15 +28,15 @@ class Model
      * 初始化.
      *
      * @access public
-     * @param  string $active 数据分组
+     * @param  string $pool 连接池
      * @return void
      */
-    public function __construct($active = 'master')
+    public function __construct($pool = 'master')
     {
-        if (isset(self::$isLoad[$active])) {
-            $this->_db = self::$isLoad[$active];
+        if (isset(self::$isLoad[$pool])) {
+            $this->_db = self::$isLoad[$pool];
         } else {
-            $config = Config::item($active, 'database');
+            $config = Config::item($pool, 'database');
 
             if (empty($config)) {
                 throw new \Exception('数据库配置不存在！');
@@ -56,7 +56,7 @@ class Model
 
             $this->_db = new Medoo($this->_config);
 
-            self::$isLoad[$active] = $this->_db;
+            self::$isLoad[$pool] = $this->_db;
         }
     }
 

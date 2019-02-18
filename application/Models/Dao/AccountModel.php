@@ -10,14 +10,37 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 会员模型
+// 会员账户
 //----------------------------------
 
-namespace App\Models;
+namespace App\Models\Dao;
 
 use Fireworm\Core\Model;
 
-class UserModel extends Model
+class AccountModel extends Model
 {
+    const TABLE = 'account';
+    const POOL  = 'master';
 
+    /**
+     * 初始化.
+     *
+     * @access public
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct(self::POOL);
+    }
+
+    /**
+     * 查找所有会员
+     *
+     * @access public
+     * @return mixed
+     */
+    public function findAll()
+    {
+        return $this->fetchAll(self::TABLE);
+    }
 }
