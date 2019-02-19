@@ -20,7 +20,7 @@ use Fireworm\Core\Model;
 class AccountDao extends Model
 {
     const TABLE = 'account';
-    const POOL  = 'master';
+    const GROUP = 'master';
 
     /**
      * 初始化.
@@ -30,7 +30,7 @@ class AccountDao extends Model
      */
     public function __construct()
     {
-        parent::__construct(self::POOL);
+        parent::__construct(self::GROUP);
     }
 
     /**
