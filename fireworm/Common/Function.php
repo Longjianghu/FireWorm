@@ -94,3 +94,18 @@ if ( ! function_exists('ipAddress')) {
         return $ip;
     }
 }
+
+/**
+ * 获取微秒
+ *
+ * @access public
+ * @return string
+ */
+if ( ! function_exists('microtimeFloat')) {
+    function microtimeFloat()
+    {
+        list($usec, $sec) = explode(' ', microtime());
+
+        return ((float)$usec + (float)$sec);
+    }
+}
