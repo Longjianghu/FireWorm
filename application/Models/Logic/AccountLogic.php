@@ -13,11 +13,11 @@
 // 会员账户
 //----------------------------------
 
-namespace App\Models\Services;
+namespace App\Models\Logic;
 
 use App\Models\Dao\AccountDao;
 
-class AccountService
+class AccountLogic
 {
     /**
      * @var \App\Models\Dao\AccountDao $_accountModel
