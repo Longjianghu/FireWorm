@@ -17,7 +17,7 @@ namespace App\Models\Dao;
 
 use Fireworm\Core\Model;
 
-class AccountModel extends Model
+class AccountDao extends Model
 {
     const TABLE = 'account';
     const POOL  = 'master';
