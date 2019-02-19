@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 namespace Fireworm;
 
-use Fireworm\Core\DotEnv;
-use Fireworm\Core\Logs;
 use Fireworm\Core\Route;
+use Fireworm\Core\DotEnv;
+use Fireworm\Exceptions\ErrorException;
 
 class Bootstrap
 {
@@ -45,18 +45,16 @@ class Bootstrap
             $class = str_replace('\\\\', '\\', $class);
 
             if ( ! class_exists($class)) {
-                throw new \Exception($controller.'类未定义！');
+                throw new ErrorException($controller.'类未定义！');
             }
 
             if ( ! method_exists($class, $method)) {
-                throw new \Exception($method.'方法未定义！');
+                throw new ErrorException($method.'方法未定义！');
             }
 
             (new $class())->$method();
         } catch (\Throwable $e) {
-            (new Logs())::addUserLog($e->getMessage(), [], false);
-
-            echo $e->getMessage();
+            \Fireworm\Core\ExceptionHandler::handle($e);
         }
     }
 }

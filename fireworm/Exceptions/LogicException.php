@@ -15,7 +15,7 @@
 
 namespace Fireworm\Exceptions;
 
-class LogicException extends \Exception
+class LogicException extends \LogicException
 {
 
 }

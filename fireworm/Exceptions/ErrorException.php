@@ -15,7 +15,7 @@
 
 namespace Fireworm\Exceptions;
 
-class ErrorException extends \Exception
+class ErrorException extends \ErrorException
 {
 
 }
