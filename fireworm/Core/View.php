@@ -15,6 +15,8 @@
 
 namespace Fireworm\Core;
 
+use Fireworm\Exceptions\ErrorException;
+
 class View
 {
     /**
@@ -41,17 +43,17 @@ class View
         $viewPath = APP_PATH.'/'.Config::item('viewPath');
         $path     = $viewPath.'/'.$filename;
 
-        if (is_file($path)) {
-            $loader = new \Twig_Loader_Filesystem($viewPath);
-
-            $twig = (new \Twig_Environment($loader, [
-                'cache' => $cachePath,
-                'debug' => (APP_ENV == 'dev') ? true : false
-            ]));
-
-            return ( ! empty($cache)) ? $twig->render($filename, $data) : $twig->display($filename, $data);
-        } else {
-            throw new \Exception('视图文件'.$filename.'不存在！');
+        if ( ! is_file($path)) {
+            throw new ErrorException('视图文件'.$filename.'不存在！');
         }
+
+        $loader = new \Twig_Loader_Filesystem($viewPath);
+
+        $twig = (new \Twig_Environment($loader, [
+            'cache' => $cachePath,
+            'debug' => (APP_ENV == 'dev') ? true : false
+        ]));
+
+        return ( ! empty($cache)) ? $twig->render($filename, $data) : $twig->display($filename, $data);
     }
 }

@@ -15,6 +15,8 @@
 
 namespace Fireworm\Core;
 
+use Fireworm\Exceptions\ErrorException;
+
 class Config
 {
     public static $config = [];
@@ -46,7 +48,7 @@ class Config
 
             self::$config[$filename] = $config;
         } else {
-            throw new \Exception('配置文件'.$filename.'.php不存在！');
+            throw new ErrorException('配置文件'.$filename.'.php不存在！');
         }
 
         return ( ! empty($item) && isset(self::$config[$filename][$item])) ? self::$config[$filename][$item] : null;

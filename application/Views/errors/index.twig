@@ -1,0 +1,10 @@
+{% extends 'layouts/main.twig' %}
+{% block title %}错误提示{% endblock %}
+{% block content %}
+    <h1>{{ message }}</h1>
+    <p>文件名称:{{ file }}</p>
+    <p>错误代码:{{ code }}</p>
+    <p>代码行数:{{ line }}</p>
+    <p>错误详情:{{ trace }}</p>
+{% endblock %}
+{% block js %}{% endblock %}

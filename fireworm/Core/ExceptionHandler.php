@@ -15,8 +15,6 @@
 
 namespace FireWorm\Core;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 use Fireworm\Exceptions\Exception;
 use Fireworm\Exceptions\LogicException;
 
@@ -31,41 +29,18 @@ class ExceptionHandler
      */
     public static function handle(\Throwable $e)
     {
-        $error = [
-            'code'  => $e->getCode(),
-            'line'  => $e->getLine(),
-            'file'  => $e->getFile(),
-            'trace' => $e->getTraceAsString()
+        $data = [
+            'code'    => $e->getCode(),
+            'message' => $e->getMessage(),
+            'line'    => $e->getLine(),
+            'file'    => $e->getFile(),
+            'trace'   => json_encode($e->getTrace()),
         ];
 
         if ( ! $e instanceof Exception) {
-            self::addLog($e->getMessage(), $error, ($e instanceof LogicException) ? true : false);
+            \Fireworm\Core\Logs::create($e->getMessage(), $data, ($e instanceof LogicException) ? true : false);
         }
 
-        echo $e->getMessage();
-    }
-
-    /**
-     * 添加日志
-     *
-     * @access public
-     * @param  string $message 日志内容
-     * @param  array  $content 日志内容
-     * @param  string $debug   调试日志
-     * @return void
-     */
-    public static function addLog(string $message, array $content = [], $debug = true)
-    {
-        $logPath = RUN_PATH.'/logs/'.date('ymd');
-
-        if ( ! is_dir($logPath)) {
-            @mkdir($logPath, 0777, true);
-        }
-
-        $filename = sprintf('%s/%s.log', $logPath, ( ! empty($debug)) ? 'debug' : 'error');
-        $level    = ( ! empty($debug)) ? LOGGER::DEBUG : LOGGER::ERROR;
-        $action   = ( ! empty($debug)) ? 'addDebug' : 'addError';
-
-        (new Logger('log'))->pushHandler(new StreamHandler($filename, $level))->$action($message, $content);
+        \Fireworm\Core\View::render('errors/index', $data);
     }
 }
