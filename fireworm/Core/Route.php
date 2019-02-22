@@ -45,7 +45,7 @@ class Route
      */
     public function fetchController()
     {
-        return ucfirst(sprintf('%sController', $this->_controller));
+        return ucfirst(sprintf('%s', $this->_controller));
     }
 
     /**

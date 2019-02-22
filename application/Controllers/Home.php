@@ -18,7 +18,7 @@ namespace App\Controllers;
 use Fireworm\Core\Controller;
 use Fireworm\Core\View;
 
-class HomeController extends Controller
+class Home extends Controller
 {
     /**
      * 默认首页
