@@ -26,6 +26,7 @@ class Request
     private $_files;
     private $_post;
     private $_server;
+    private $_session;
 
     /**
      * 初始化.
@@ -37,11 +38,12 @@ class Request
     {
         $this->_antiXss = new AntiXSS();
 
-        $this->_cookie = $this->_filter($_COOKIE);
-        $this->_files  = $this->_filter($_FILES);
-        $this->_get    = $this->_filter($_GET);
-        $this->_post   = $this->_filter($_POST);
-        $this->_server = $this->_filter($_SERVER);
+        $this->_cookie  = $this->_filter($_COOKIE);
+        $this->_files   = $this->_filter($_FILES);
+        $this->_get     = $this->_filter($_GET);
+        $this->_post    = $this->_filter($_POST);
+        $this->_server  = $this->_filter($_SERVER);
+        $this->_session = $this->_filter($_SESSION);
     }
 
     /**
@@ -163,6 +165,26 @@ class Request
     public function server($index = null, $default = null, $clean = true)
     {
         $data = ( ! empty($index)) ? ArrayHelper::getValue($this->_server, $index, $default) : $this->_server;
+
+        if ( ! empty($data)) {
+            return ( ! empty($clean)) ? $this->_clean($data) : $data;
+        }
+
+        return $default;
+    }
+
+    /**
+     * $_SESSION
+     *
+     * @access public
+     * @param  string $index   索引选项
+     * @param  mixed  $default 默认值
+     * @param  bool   $clean   是否过滤
+     * @return mixed
+     */
+    public function session($index = null, $default = null, $clean = true)
+    {
+        $data = ( ! empty($index)) ? ArrayHelper::getValue($this->_session, $index, $default) : $this->_session;
 
         if ( ! empty($data)) {
             return ( ! empty($clean)) ? $this->_clean($data) : $data;
