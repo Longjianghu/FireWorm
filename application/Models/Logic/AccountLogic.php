@@ -20,9 +20,9 @@ use App\Models\Dao\AccountDao;
 class AccountLogic
 {
     /**
-     * @var \App\Models\Dao\AccountDao $_accountModel
+     * @var \App\Models\Dao\AccountDao
      */
-    private $_accountModel;
+    private $_accountDao;
 
     /**
      * 初始化.
@@ -32,7 +32,7 @@ class AccountLogic
      */
     public function __construct()
     {
-        $this->_accountModel = new AccountDao();
+        $this->_accountDao = new AccountDao();
     }
 
     /**
@@ -43,6 +43,6 @@ class AccountLogic
      */
     public function getUserList()
     {
-        return $this->_accountModel->findAll();
+        return $this->_accountDao->findAll();
     }
 }
