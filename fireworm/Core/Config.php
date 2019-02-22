@@ -26,7 +26,7 @@ class Config
      *
      * @access public
      * @param  string $item     配置选项
-     * @param  string $filename 配置文件名
+     * @param  string $filename 配置文件
      * @return mixed
      */
     public static function item($item = null, string $filename = 'settings')
@@ -48,7 +48,7 @@ class Config
 
             self::$config[$filename] = $config;
         } else {
-            throw new ErrorException('配置文件'.$filename.'.php不存在！');
+            throw new ErrorException('配置文件'.$filename.'不存在！');
         }
 
         return ( ! empty($item) && isset(self::$config[$filename][$item])) ? self::$config[$filename][$item] : null;
