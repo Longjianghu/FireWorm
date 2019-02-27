@@ -331,7 +331,7 @@ if ( ! function_exists('upload')) {
                 throw new Exception('上传目录没有写入权限！');
             }
 
-            $filename = sprintf('%s/%s.%s', $path, date('YmdHis').mt_rand(10000, 99999), $info['extension']);
+            $filename = sprintf('%s/%s.%s', $path, random(20), $info['extension']);
 
             if ( ! is_uploaded_file($upload['tmp_name'])) {
                 throw new Exception('请重新上传文件！');

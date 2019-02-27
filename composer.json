@@ -29,10 +29,9 @@
     "monolog/monolog": "^1.24",
     "guzzlehttp/guzzle": "^6.3",
     "voku/anti-xss": "^4.1",
-    "catfan/medoo": "^1.6"
-  },
-  "require-dev": {
-    "box/spout": "^2.7"
+    "catfan/medoo": "^1.6",
+    "box/spout": "^2.7",
+    "Josantonius/Session": "^1.1"
   },
   "repositories": {
     "packagist": {

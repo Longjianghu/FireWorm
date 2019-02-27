@@ -18,6 +18,7 @@ namespace Fireworm\Core;
 class Controller
 {
     public $request;
+    public $session;
 
     /**
      * 初始化.
@@ -28,5 +29,6 @@ class Controller
     public function __construct()
     {
         $this->request = new Request();
+        $this->session = new Session();
     }
 }

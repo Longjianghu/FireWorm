@@ -18,4 +18,5 @@ return [
     'defaultMethod'     => 'index', // 默认方法
     'controllerPath'    => 'Controllers', // 控制器目录
     'viewPath'          => 'Views', // 视图目录
+    'sessionPrefix'     => 'fw_', // SESSION 前缀
 ];
