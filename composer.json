@@ -31,10 +31,13 @@
     "voku/anti-xss": "^4.1",
     "catfan/medoo": "^1.6"
   },
+  "require-dev": {
+    "box/spout": "^2.7"
+  },
   "repositories": {
     "packagist": {
       "type": "composer",
-      "url": "https://packagist.phpcomposer.com"
+      "url": "https://packagist.laravel-china.org"
     }
   }
 }
