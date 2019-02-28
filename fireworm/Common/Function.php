@@ -18,13 +18,13 @@
  *
  * @access public
  * @param  string  $string 字符串
- * @param  boolean $decode 数据解密
+ * @param  bool    $decode 数据解密
  * @param  integer $expiry 有效期
  * @param  string  $key    加密密钥
  * @return string
  */
 if ( ! function_exists('authcode')) {
-    function authcode($string, $decode = false, $expiry = 0, $key = '')
+    function authcode(string $string, bool $decode = false, int $expiry = 0, string $key = '')
     {
         $str    = '';
         $length = 4;
@@ -78,6 +78,41 @@ if ( ! function_exists('authcode')) {
 }
 
 /**
+ * 下划线转陀峰
+ *
+ * @access  public
+ * @param   mixed $covert 转换数据
+ * @return  void
+ */
+if ( ! function_exists('convertHump')) {
+    function convertHump($covert)
+    {
+        $data = [];
+
+        if (is_array($covert) || is_object($covert)) {
+            foreach ($covert as $key => $val) {
+                if (stripos($key, '_') !== false) {
+                    $key = explode('_', $key);
+
+                    foreach ($key as $k => $v) {
+                        $key[$k] = ucfirst(strtolower($v));
+                    }
+
+                    $key = implode('', $key);
+                    $key = lcfirst($key);
+                }
+
+                $data[$key] = convertHump($val);
+            }
+        } else {
+            $data = $covert;
+        }
+
+        return $data;
+    }
+}
+
+/**
  * 获取环境变量
  *
  * @access public
@@ -86,24 +121,11 @@ if ( ! function_exists('authcode')) {
  * @return string
  */
 if ( ! function_exists('env')) {
-    function env($item, $default = null)
+    function env(string $item, $default = null)
     {
         $env = getenv($item);
 
         return ( ! empty($env)) ? $env : $default;
-    }
-}
-
-/**
- * 是否是命令行模式
- *
- * @access public
- * @return string
- */
-if ( ! function_exists('isCli')) {
-    function isCli()
-    {
-        return (PHP_SAPI === 'cli') ? true : false;
     }
 }
 
@@ -169,21 +191,19 @@ if ( ! function_exists('obj2arr')) {
  *
  * @access public
  * @param  integer $len 字符长度
- * @param  boolean $int 纯数字
+ * @param  bool    $int 纯数字
  * @return string
  */
 if ( ! function_exists('random')) {
-    function random($len = 10, $int = false)
+    function random(int $len = 10, bool $num = false)
     {
         $str = '';
         $len = (is_numeric($len)) ? $len : 10;
 
-        $seed = base_convert(md5(microtime(true).uniqid(mt_rand(), true)), 16, ( ! empty($int)) ? 10 : 35);
-        $seed = ( ! empty($int)) ? (str_replace('0', '', $seed).'012340567890') : ($seed.'zZ'.strtoupper($seed));
+        $seed = base_convert(md5(microtime(true).uniqid(mt_rand(), true)), 16, ( ! empty($num)) ? 10 : 35);
+        $seed = ( ! empty($num)) ? (str_replace('0', '', $seed).'012340567890') : ($seed.'zZ'.strtoupper($seed));
 
-        if ( ! empty($int)) {
-            $str = '';
-        } else {
+        if (empty($num)) {
             $str = chr(mt_rand(1, 26) + mt_rand(0, 1) * 32 + 64);
             --$len;
         }
@@ -203,10 +223,10 @@ if ( ! function_exists('random')) {
  *
  * @access public
  * @param  string $filename 本地文件
- * @return boolean
+ * @return bool
  */
 if ( ! function_exists('remove')) {
-    function remove($filename)
+    function remove(string $filename)
     {
         return (is_file($filename)) ? @unlink($filename) : true;
     }
@@ -216,12 +236,12 @@ if ( ! function_exists('remove')) {
  * 删除目录
  *
  * @access public
- * @param  string  $path    目录路径
- * @param  boolean $del_dir 删除目录
- * @return boolean
+ * @param  string $path   目录路径
+ * @param  bool   $delDir 删除根目录
+ * @return bool
  */
 if ( ! function_exists('rmdir')) {
-    function rmdir($path, $delDir = true)
+    function rmdir(string $path, bool $delDir = true)
     {
         $path = trim($path, '/\\');
 
@@ -251,12 +271,12 @@ if ( ! function_exists('rmdir')) {
  * 交易编号
  *
  * @access public
- * @param  string  $prefix 前缀
- * @param  integer $length 编号长度
+ * @param  string $prefix 前缀
+ * @param  int    $length 编号长度
  * @return string
  */
 if ( ! function_exists('tradeNo')) {
-    function tradeNo($prefix = '', $length = 20)
+    function tradeNo(string $prefix = '', int $length = 20)
     {
         $str = sprintf('%s%s', $prefix, ($length > 15) ? date('ymdhis') : random(round($length / 2), true));
         $str = sprintf('%s%s', $str, random($length - strlen($str)));
@@ -301,7 +321,7 @@ if ( ! function_exists('p')) {
  * @return array
  */
 if ( ! function_exists('upload')) {
-    function upload($field, $path = 'upload', $allowType = '*')
+    function upload(string $field, string $path = 'upload', string $allowType = '*')
     {
         $status = ['code' => 0, 'data' => '', 'msg' => ''];
 
@@ -312,9 +332,8 @@ if ( ! function_exists('upload')) {
                 throw new Exception('请选择上传文件！');
             }
 
-            $info = pathinfo($upload['name']);
-
-            $allowType = (is_array($allowType)) ? $allowType : explode(',', $allowType);
+            $info      = pathinfo($upload['name']);
+            $allowType = explode(',', $allowType);
 
             if ($allowType != '*' && ! in_array($info['extension'], $allowType)) {
                 throw new Exception('不允许上传的文件格式！');
@@ -349,5 +368,25 @@ if ( ! function_exists('upload')) {
         }
 
         return $status;
+    }
+}
+
+/**
+ * 输出JSON数据
+ *
+ * @access  public
+ * @param   mixed $response 输出数据
+ * @return  void
+ */
+if ( ! function_exists('withJSON')) {
+    function withJSON($response)
+    {
+        header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Content-type:application/json;charset=utf8');
+
+        $response['data'] = ( ! empty($response['data'])) ? convertHump($response['data']) : new \stdClass();
+
+        exit(json_encode($response));
     }
 }
