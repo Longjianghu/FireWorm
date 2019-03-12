@@ -278,7 +278,7 @@ if ( ! function_exists('rmdir')) {
 if ( ! function_exists('tradeNo')) {
     function tradeNo(string $prefix = '', int $length = 20)
     {
-        $str = sprintf('%s%s', $prefix, ($length > 15) ? date('ymdhis') : random(round($length / 2), true));
+        $str = sprintf('%s%s', $prefix, ($length > 10) ? date('ymdhis') : random(round($length / 2), true));
         $str = sprintf('%s%s', $str, random($length - strlen($str)));
 
         return strtoupper($str);
