@@ -34,6 +34,6 @@ class Paginator
         $paginator = new Jpaginator($total, $perPage, $page, sprintf('%s?page=(:num)', pageUrl(true)));
         $paginator->setMaxPagesToShow(5);
 
-        return $paginator;
+        return View::render('common/pager.twig', ['paginator' => $paginator], true);
     }
 }
