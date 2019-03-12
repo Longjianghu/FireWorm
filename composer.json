@@ -32,7 +32,8 @@
     "voku/anti-xss": "^4.1",
     "catfan/medoo": "^1.6",
     "box/spout": "^2.7",
-    "Josantonius/Session": "^1.1"
+    "Josantonius/Session": "^1.1",
+    "jasongrimes/paginator": "~1.0"
   },
   "repositories": {
     "packagist": {

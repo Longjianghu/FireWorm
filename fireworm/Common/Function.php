@@ -187,6 +187,41 @@ if ( ! function_exists('obj2arr')) {
 }
 
 /**
+ * 页面地址
+ *
+ * @access public
+ * @param  bool $filter 是否过滤
+ * @return string
+ */
+if ( ! function_exists('pageUrl')) {
+    function pageUrl($filter = false)
+    {
+        $offset = stripos($_SERVER['REQUEST_URI'], '?');
+
+        $url = [
+            'port'  => '//',
+            'host'  => $_SERVER['HTTP_HOST'],
+            'uri'   => ($offset !== false) ? substr($_SERVER['REQUEST_URI'], 0, $offset) : $_SERVER['REQUEST_URI'],
+            'query' => $_SERVER['QUERY_STRING'],
+        ];
+
+        if ( ! empty($url['query'])) {
+            parse_str($url['query'], $param);
+
+            if (isset($param['page']) && ! empty($filter)) {
+                unset($param['page']);
+            }
+
+            $url['query'] = ( ! empty($param)) ? sprintf('?%s', http_build_query($param, '', '&')) : '';
+        }
+
+        $url = implode('', $url);
+
+        return $url;
+    }
+}
+
+/**
  * 随机字符串
  *
  * @access public
