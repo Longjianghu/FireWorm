@@ -80,7 +80,7 @@ class Model
      * @access public
      * @return object
      */
-    public function fetchDb()
+    public function getInstanct()
     {
         return $this->_db;
     }
