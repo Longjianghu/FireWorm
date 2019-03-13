@@ -20,9 +20,8 @@ use Fireworm\Helpers\ArrayHelper;
 
 class Model
 {
-    public $_db;
-
-    public static $isLoad;
+    private        $_db;
+    private static $isLoad;
 
     /**
      * 初始化
@@ -43,7 +42,7 @@ class Model
                 throw new \Exception('数据库配置不存在！');
             }
 
-            $this->_config = [
+            $options = [
                 'server'        => ArrayHelper::getValue($config, 'server'),
                 'username'      => ArrayHelper::getValue($config, 'username'),
                 'password'      => ArrayHelper::getValue($config, 'password'),
@@ -55,7 +54,7 @@ class Model
                 'port'          => 3306,
             ];
 
-            $this->_db = new Medoo($this->_config);
+            $this->_db = new Medoo($options);
 
             self::$isLoad[$group] = $this->_db;
         }
