@@ -13,7 +13,7 @@
 // 数组辅助函数库
 //----------------------------------
 
-namespace Fireworm\Helpers;
+namespace Src\Helpers;
 
 class ArrayHelper
 {

@@ -13,7 +13,7 @@
 // 控制器
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
 class Controller
 {

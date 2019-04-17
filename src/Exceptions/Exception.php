@@ -13,9 +13,9 @@
 // 自定义异常
 //----------------------------------
 
-namespace Fireworm\Exceptions;
+namespace Src\Exceptions;
 
-class LogicException extends \LogicException
+class Exception extends \Exception
 {
 
 }

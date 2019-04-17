@@ -13,9 +13,9 @@
 // 自定义请求
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
-use Fireworm\Helpers\ArrayHelper;
+use src\Helpers\ArrayHelper;
 use voku\helper\AntiXSS;
 
 class Request

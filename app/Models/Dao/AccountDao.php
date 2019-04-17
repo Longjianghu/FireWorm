@@ -10,29 +10,37 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 默认控制器
+// 会员账户
 //----------------------------------
 
-namespace App\Controllers;
+namespace App\Models\Dao;
 
-use Fireworm\Core\Controller;
-use Fireworm\Core\View;
+use Src\Core\Model;
 
-class Home extends Controller
+class AccountDao extends Model
 {
+    const TABLE = 'account';
+    const GROUP = 'master';
+
     /**
-     * 默认首页
+     * 初始化.
      *
      * @access public
      * @return void
      */
-    public function index()
+    public function __construct()
     {
-        $data = [
-            'title'   => 'Fireworm',
-            'content' => '一款简单的PHP开发框架!',
-        ];
+        parent::__construct(self::GROUP);
+    }
 
-        return View::render('home/index', $data);
+    /**
+     * 查找所有会员
+     *
+     * @access public
+     * @return mixed
+     */
+    public function findAll()
+    {
+        return $this->fetchAll(self::TABLE);
     }
 }

@@ -13,9 +13,9 @@
 // 文件配置类
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
-use Fireworm\Exceptions\ErrorException;
+use Src\Exceptions\ErrorException;
 
 class Config
 {

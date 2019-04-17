@@ -15,11 +15,11 @@
 
 declare(strict_types=1);
 
-namespace Fireworm;
+namespace Src;
 
-use Fireworm\Core\Route;
-use Fireworm\Core\DotEnv;
-use Fireworm\Exceptions\ErrorException;
+use Src\Core\Route;
+use Src\Core\DotEnv;
+use Src\Exceptions\ErrorException;
 
 class Bootstrap
 {
@@ -54,7 +54,7 @@ class Bootstrap
 
             (new $class())->$method();
         } catch (\Throwable $e) {
-            \Fireworm\Core\ExceptionHandler::handle($e);
+            \Src\Core\ExceptionHandler::handle($e);
         }
     }
 }

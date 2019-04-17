@@ -10,30 +10,12 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 分页
+// 自定义验证
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
-use JasonGrimes\Paginator as Jpaginator;
-
-class Paginator
+class Validator
 {
-    /**
-     * 创建页码
-     *
-     * @access public
-     * @param  int $total   记录总数
-     * @param  int $perPage 每页显示数量
-     * @return Jpaginator
-     */
-    public static function create($total = 0, $perPage = 10)
-    {
-        $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-        $paginator = new Jpaginator($total, $perPage, $page, sprintf('%s?page=(:num)', pageUrl(true)));
-        $paginator->setMaxPagesToShow(5);
-
-        return View::render('common/pager.twig', ['paginator' => $paginator], true);
-    }
 }

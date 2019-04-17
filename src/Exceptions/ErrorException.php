@@ -10,12 +10,12 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 自定义验证
+// 自定义异常
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Exceptions;
 
-class Validator
+class ErrorException extends \ErrorException
 {
 
 }

@@ -10,39 +10,29 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 会员账户
+// 默认控制器
 //----------------------------------
 
-namespace App\Models\Logic;
+namespace App\Controllers;
 
-use App\Models\Dao\AccountDao;
+use Src\Core\Controller;
+use Src\Core\View;
 
-class AccountLogic
+class Home extends Controller
 {
     /**
-     * @var \App\Models\Dao\AccountDao
-     */
-    private $_accountDao;
-
-    /**
-     * 初始化.
+     * 默认首页
      *
      * @access public
      * @return void
      */
-    public function __construct()
+    public function index()
     {
-        $this->_accountDao = new AccountDao();
-    }
+        $data = [
+            'title'   => 'Fireworm',
+            'content' => '一款简单的PHP开发框架!',
+        ];
 
-    /**
-     * 获取会员列表
-     *
-     * @access public
-     * @return mixed
-     */
-    public function getUserList()
-    {
-        return $this->_accountDao->findAll();
+        return View::render('home/index', $data);
     }
 }

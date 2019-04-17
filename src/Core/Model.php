@@ -13,10 +13,10 @@
 // 模型层
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
 use Medoo\Medoo;
-use Fireworm\Helpers\ArrayHelper;
+use src\Helpers\ArrayHelper;
 
 class Model
 {

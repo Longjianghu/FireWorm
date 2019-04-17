@@ -13,7 +13,7 @@
 // 自定义日志
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;

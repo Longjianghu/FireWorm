@@ -13,7 +13,7 @@
 // HTTP 辅助函数库
 //----------------------------------
 
-namespace Fireworm\Helpers;
+namespace Src\Helpers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;

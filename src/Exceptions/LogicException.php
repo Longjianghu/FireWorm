@@ -10,21 +10,12 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 入口文件
+// 自定义异常
 //----------------------------------
 
-declare(strict_types=1);
+namespace Src\Exceptions;
 
-define('VERSION', '1.0.0');
-define('ROOT_PATH', dirname(__DIR__));
-define('CORE_PATH', ROOT_PATH.'/src');
-define('APP_PATH', ROOT_PATH.'/app');
-define('RUN_PATH', ROOT_PATH.'/runtime');
-define('APP_ENV', 'dev');
+class LogicException extends \LogicException
+{
 
-ini_set('date.timezone', 'Asia/Shanghai');
-ini_set('display_errors', (APP_ENV == 'dev') ? 'On' : 'Off');
-
-require_once ROOT_PATH.'/vendor/autoload.php';
-
-\Src\Bootstrap::run();
+}

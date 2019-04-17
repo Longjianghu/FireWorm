@@ -10,12 +10,39 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 自定义异常
+// 会员账户
 //----------------------------------
 
-namespace Fireworm\Exceptions;
+namespace App\Models\Data;
 
-class ErrorException extends \ErrorException
+use App\Models\Dao\AccountDao;
+
+class AccountData
 {
+    /**
+     * @var \App\Models\Dao\AccountDao
+     */
+    private $_accountDao;
 
+    /**
+     * 初始化.
+     *
+     * @access public
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->_accountDao = new AccountDao();
+    }
+
+    /**
+     * 获取会员列表
+     *
+     * @access public
+     * @return mixed
+     */
+    public function getUserList()
+    {
+        return $this->_accountDao->findAll();
+    }
 }

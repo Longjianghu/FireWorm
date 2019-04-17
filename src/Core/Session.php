@@ -13,7 +13,7 @@
 // 会话管理
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
 use \Josantonius\Session\Session as Jsession;
 
@@ -25,7 +25,7 @@ class Session
      * 初始化.
      *
      * @access public
-     * @throws \Fireworm\Exceptions\ErrorException
+     * @throws \src\Exceptions\ErrorException
      */
     public function __construct()
     {

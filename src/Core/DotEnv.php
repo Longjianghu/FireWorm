@@ -13,7 +13,7 @@
 // 自定义环境变量
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
 class DotEnv
 {

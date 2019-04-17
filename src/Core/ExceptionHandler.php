@@ -10,37 +10,37 @@
 // +----------------------------------------------------------------------
 
 //----------------------------------
-// 会员账户
+// 自定义异常接管
 //----------------------------------
 
-namespace App\Models\Dao;
+namespace Src\Core;
 
-use Fireworm\Core\Model;
+use src\Exceptions\Exception;
+use src\Exceptions\LogicException;
 
-class AccountDao extends Model
+class ExceptionHandler
 {
-    const TABLE = 'account';
-    const GROUP = 'master';
-
     /**
-     * 初始化.
+     * 接管程序
      *
      * @access public
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct(self::GROUP);
-    }
-
-    /**
-     * 查找所有会员
-     *
-     * @access public
+     * @param \Throwable $e
      * @return mixed
      */
-    public function findAll()
+    public static function handle(\Throwable $e)
     {
-        return $this->fetchAll(self::TABLE);
+        $data = [
+            'code'    => $e->getCode(),
+            'message' => $e->getMessage(),
+            'line'    => $e->getLine(),
+            'file'    => $e->getFile(),
+            'trace'   => json_encode($e->getTrace()),
+        ];
+
+        if ( ! $e instanceof Exception) {
+            \Src\Core\Logs::create($e->getMessage(), $data, ($e instanceof LogicException) ? true : false);
+        }
+
+        \Src\Core\View::render('errors/index', $data);
     }
 }

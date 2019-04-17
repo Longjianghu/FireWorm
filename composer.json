@@ -17,11 +17,11 @@
   ],
   "autoload": {
     "files": [
-      "fireworm/Common/Function.php"
+      "src/Common/Function.php"
     ],
     "psr-4": {
-      "Fireworm\\": "fireworm/",
-      "App\\": "application/"
+      "Src\\": "src/",
+      "App\\": "app/"
     }
   },
   "require": {

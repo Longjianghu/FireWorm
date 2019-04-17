@@ -13,9 +13,9 @@
 // 视图层
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
-use Fireworm\Exceptions\ErrorException;
+use src\Exceptions\ErrorException;
 
 class View
 {

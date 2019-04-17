@@ -13,7 +13,7 @@
 // 路由文件
 //----------------------------------
 
-namespace Fireworm\Core;
+namespace Src\Core;
 
 class Route
 {
