@@ -25,8 +25,8 @@ class ExcelHelper
      * 读取Excel文档
      *
      * @access public
-     * @param  string $filename 文件名
-     * @param  bool   $multi    多个工作表
+     * @param string $filename 文件名
+     * @param bool   $multi    多个工作表
      * @return array
      */
     public static function readExcel($filename, $multi = false)
@@ -72,9 +72,9 @@ class ExcelHelper
      * example：$data = [['A11'], ['A12']];
      *
      * @access public
-     * @param  array  $data     导出数据
-     * @param  string $filename 文件名
-     * @param  string $path     保存路径
+     * @param array  $data     导出数据
+     * @param string $filename 文件名
+     * @param string $path     保存路径
      * @return void
      */
     public static function writeExcel($data, $filename = null, $path = null)
@@ -105,7 +105,22 @@ class ExcelHelper
                 $writer->openToBrowser(urlencode($filename));
             }
 
-            $writer->addRows($data);
+            if ( ! isset($data[0])) {
+                $i = 0;
+
+                foreach ($data as $k => $v) {
+                    $sheet = ($i == 0) ? $writer->getCurrentSheet() : $writer->addNewSheetAndMakeItCurrent();
+                    $sheet->setName($k);
+
+                    $writer->setCurrentSheet($sheet);
+                    $writer->addRows($v);
+
+                    $i += 1;
+                }
+            } else {
+                $writer->addRows($data);
+            }
+
             $writer->close();
         } catch (Exception $e) {
             echo $e->getMessage();
