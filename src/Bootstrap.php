@@ -29,7 +29,7 @@ class Bootstrap
      * @access public
      * @return void
      */
-    public static function run()
+    public static function  run()
     {
         try {
             // 加载环境变量

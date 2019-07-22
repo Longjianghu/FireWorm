@@ -17,10 +17,10 @@
  * 加解密函数
  *
  * @access public
- * @param  string  $string 字符串
- * @param  bool    $decode 数据解密
- * @param  integer $expiry 有效期
- * @param  string  $key    加密密钥
+ * @param string  $string 字符串
+ * @param bool    $decode 数据解密
+ * @param integer $expiry 有效期
+ * @param string  $key    加密密钥
  * @return string
  */
 if ( ! function_exists('authcode')) {
@@ -81,7 +81,7 @@ if ( ! function_exists('authcode')) {
  * 下划线转陀峰
  *
  * @access  public
- * @param   mixed $covert 转换数据
+ * @param mixed $covert 转换数据
  * @return  void
  */
 if ( ! function_exists('convertHump')) {
@@ -116,8 +116,8 @@ if ( ! function_exists('convertHump')) {
  * 获取环境变量
  *
  * @access public
- * @param  string $item    选项
- * @param  mixed  $default 默认值
+ * @param string $item    选项
+ * @param mixed  $default 默认值
  * @return string
  */
 if ( ! function_exists('env')) {
@@ -174,7 +174,7 @@ if ( ! function_exists('microtimeFloat')) {
  * 对象转数组
  *
  * @access public
- * @param  object $var 操作对象
+ * @param object $var 操作对象
  * @return array
  */
 if ( ! function_exists('obj2arr')) {
@@ -190,7 +190,7 @@ if ( ! function_exists('obj2arr')) {
  * 页面地址
  *
  * @access public
- * @param  bool $filter 是否过滤
+ * @param bool $filter 是否过滤
  * @return string
  */
 if ( ! function_exists('pageUrl')) {
@@ -225,8 +225,8 @@ if ( ! function_exists('pageUrl')) {
  * 随机字符串
  *
  * @access public
- * @param  integer $len 字符长度
- * @param  bool    $int 纯数字
+ * @param integer $len 字符长度
+ * @param bool    $int 纯数字
  * @return string
  */
 if ( ! function_exists('random')) {
@@ -257,7 +257,7 @@ if ( ! function_exists('random')) {
  * 删除本地文件
  *
  * @access public
- * @param  string $filename 本地文件
+ * @param string $filename 本地文件
  * @return bool
  */
 if ( ! function_exists('remove')) {
@@ -271,8 +271,8 @@ if ( ! function_exists('remove')) {
  * 删除目录
  *
  * @access public
- * @param  string $path   目录路径
- * @param  bool   $delDir 删除根目录
+ * @param string $path   目录路径
+ * @param bool   $delDir 删除根目录
  * @return bool
  */
 if ( ! function_exists('rmdir')) {
@@ -306,8 +306,8 @@ if ( ! function_exists('rmdir')) {
  * 交易编号
  *
  * @access public
- * @param  string $prefix 前缀
- * @param  int    $length 编号长度
+ * @param string $prefix 前缀
+ * @param int    $length 编号长度
  * @return string
  */
 if ( ! function_exists('tradeNo')) {
@@ -324,13 +324,13 @@ if ( ! function_exists('tradeNo')) {
  * 调试函数
  *
  * @access public
- * @param  mixed $data   打印数据
- * @param  bool  $format 格式化打印
- * @param  bool  $break  是否中断
+ * @param mixed $data   打印数据
+ * @param bool  $format 格式化打印
+ * @param bool  $break  是否中断
  * @return void
  */
-if ( ! function_exists('p')) {
-    function p($data, $format = false, $break = true)
+if ( ! function_exists('dd')) {
+    function dd($data, $format = false, $break = true)
     {
         if ( ! empty($format)) {
             echo '<pre>';
@@ -350,9 +350,9 @@ if ( ! function_exists('p')) {
  * 文件上传
  *
  * @access public
- * @param  string $field     上传字段
- * @param  string $path      上传路径
- * @param  string $allowType 文件类型
+ * @param string $field     上传字段
+ * @param string $path      上传路径
+ * @param string $allowType 文件类型
  * @return array
  */
 if ( ! function_exists('upload')) {
@@ -410,7 +410,7 @@ if ( ! function_exists('upload')) {
  * 输出JSON数据
  *
  * @access  public
- * @param   mixed $response 输出数据
+ * @param mixed $response 输出数据
  * @return  void
  */
 if ( ! function_exists('withJSON')) {
