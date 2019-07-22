@@ -28,7 +28,7 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/doc
-     * @param  string $group 配置分组
+     * @param string $group 配置分组
      * @throws \Exception
      */
     public function __construct($group = 'master')
@@ -65,8 +65,8 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/api/update
-     * @param  string $table 数据表
-     * @param  array  $where 删除条件
+     * @param string $table 数据表
+     * @param array  $where 删除条件
      * @return int
      */
     public function delete(string $table, array $where)
@@ -90,9 +90,9 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/api/select
-     * @param  string $table   数据表
-     * @param  mixed  $columns 查询字段
-     * @param  array  $where   查询条件
+     * @param string $table   数据表
+     * @param mixed  $columns 查询字段
+     * @param array  $where   查询条件
      * @return mixed
      */
     public function fetchRow(string $table, string $columns = '*', array $where = [])
@@ -109,9 +109,9 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/api/select
-     * @param  string $table   数据表
-     * @param  mixed  $columns 查询字段
-     * @param  array  $where   查询条件
+     * @param string $table   数据表
+     * @param mixed  $columns 查询字段
+     * @param array  $where   查询条件
      * @return mixed
      */
     public function fetchAll(string $table, string $columns = '*', array $where = [])
@@ -124,8 +124,8 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/api/has
-     * @param  string $table 数据表
-     * @param  array  $where 查询条件
+     * @param string $table 数据表
+     * @param array  $where 查询条件
      * @return bool
      */
     public function has(string $table, array $where)
@@ -149,8 +149,8 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/api/insert
-     * @param  string $table 数据表
-     * @param  array  $data  插入数据
+     * @param string $table 数据表
+     * @param array  $data  插入数据
      * @return int
      */
     public function insert(string $table, array $data)
@@ -165,12 +165,12 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/api/query
-     * @param  string $sql  SQL语句
-     * @param  array  $map  绑定参数
-     * @param  int    $type 记录类型 0：所有 1：单行 2：单列
+     * @param string $sql  SQL语句
+     * @param array  $map  绑定参数
+     * @param int    $type 记录类型 0：所有 1：单行 2：单列
      * @return array
      */
-    public function execute(string $sql, array $map, int $type = 0)
+    public function execute(string $sql, array $map, int $type = null)
     {
         $query = $this->_db->query($sql, $map);
 
@@ -195,9 +195,9 @@ class Model
      *
      * @access public
      * @link   https://medoo.in/api/update
-     * @param  string $table 数据表
-     * @param  array  $data  更新数据
-     * @param  array  $where 更新条件
+     * @param string $table 数据表
+     * @param array  $data  更新数据
+     * @param array  $where 更新条件
      * @return int
      */
     public function update(string $table, array $data, array $where)
