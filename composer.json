@@ -1,0 +1,39 @@
+{
+  "name": "Fireworm",
+  "description": "PHP Framework",
+  "type": "Framework",
+  "keywords": [
+    "Fireworm",
+    "PHP",
+    "Framework"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.sohocn.net/",
+  "authors": [
+    {
+      "name": "longjianghu",
+      "email": "215241062@qq.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "src/Common/Function.php"
+    ],
+    "psr-4": {
+      "Src\\": "src/",
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": "^7.0",
+    "twig/twig": "^2.6",
+    "monolog/monolog": "^1.24",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://mirrors.aliyun.com/composer/"
+    }
+  }
+}
